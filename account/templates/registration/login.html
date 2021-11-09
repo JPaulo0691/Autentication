@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title%}Login{% endblock %}
+
+{% block content %}
+    <h1>Login</h1>
+    
+    {% if form.errors %}
+        <p>
+            Seu usuário e senha não foram encontrados.
+            Por favor, tente novamente.
+        </p>
+    {% else %}
+        <p>
+            Por favor, use o formulário de login a seguir:
+        </p>
+    
+    {% endif %}
+
+    <div class="login-form">
+        <form action="{% url 'login' %}" method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type= "hidden" name="next" value="{{ next }}">
+            <p>
+                <input type="submit" value="Login">
+            </p>
+        </form>
+    </div>
+
+{% endblock %}
+    
